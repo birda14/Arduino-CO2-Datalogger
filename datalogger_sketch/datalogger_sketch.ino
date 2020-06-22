@@ -7,6 +7,7 @@
 #include "SoftwareSerial.h"
 #include "RTClib.h"
 //----------------------------------------------------------------------
+
 //Set up UART connection for CO2 sensor
 SoftwareSerial T66_Serial(6,7); //Sets up a virtual serial port
  //Using pin 12 for Rx and pin 13 for Tx
@@ -14,6 +15,7 @@ byte readCO2[] = {0xFF, 0XFE,2,2,3}; //T66 read CO2 command: 5 bytes
 
 byte response[] = {0,0,0,0,0}; //create an array to store the response
 //---------------------------------------------------------------------
+//
 //Set up BME 680 sensor
 #define BME_SCK 13
 #define BME_MISO 12
