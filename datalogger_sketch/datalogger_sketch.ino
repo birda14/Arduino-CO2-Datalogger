@@ -6,6 +6,8 @@
 #include "Adafruit_BME680.h"
 #include "SoftwareSerial.h"
 #include "RTClib.h"
+#include <OneWire.h>
+#include <DallasTemperature.h>
 //----------------------------------------------------------------------
 
 //Set up UART connection for CO2 sensor
@@ -21,8 +23,9 @@ byte response[] = {0,0,0,0,0}; //create an array to store the response
 #define BME_MISO 12
 #define BME_MOSI 11
 #define BME_CS 10
-
+#define ONE_WIRE_BUS 8
 #define SEALEVELPRESSURE_HPA (1013.25)
+
 
 Adafruit_BME680 bme; // I2C
 //----------------------------------------------------------------------
@@ -32,49 +35,41 @@ RTC_PCF8523 rtc; // define the Real Time Clock object
 // for the data logging shield, we use digital pin 10 for the SD cs line
 
 const int pinCS = 10;
+OneWire oneWire(ONE_WIRE_BUS);
+
+DallasTemperature sensors(&oneWire);
+
+ float Celcius=0;
 
 // the logging file
 
 
 //-----------------------------------------------------------------------
 
-String tempsensor, humsensor, co2sensor;
+
 //----------------------------------------------------------------------
-void setup() {
+void setup()
+{
   // put your setup code here, to run once:
   Serial.begin(9600);
-  while (!Serial);
-  Serial.println(F("BME680 test"));
+  SD.begin(pinCS);
+  bme.begin();
+  rtc.begin();
+ 
 
-if (!SD.begin(pinCS)) {
-    Serial.println("Card failed, or not present");
-    // don't do anything more:
-    while (1);
-  }
-
-if (!bme.begin()) {
-    Serial.println("Could not find a valid BME680 sensor, check wiring!");
-    while (1);
-  }
-  
- if (! rtc.begin()) {
-    Serial.println("Couldn't find RTC");
-    Serial.flush();
-    abort();
-  }
-  
   // Set up oversampling and filter initialization
   bme.setTemperatureOversampling(BME680_OS_8X);
   bme.setHumidityOversampling(BME680_OS_2X);
   bme.setPressureOversampling(BME680_OS_4X);
   bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
   bme.setGasHeater(320, 150); // 320*C for 150 ms
+  sensors.begin();
+  sensors.setWaitForConversion(false);
 
   T66_Serial.begin(19200); //Opens the virtual serial port with a baud of 19200
-  Serial.println(" Datalogger Sketch");
-  Serial.print("\n");
 
-  
+  Serial.println(" Datalogger Start");
+  Serial.print("\n");
 
   
 delay(1000); //wait 10 monutes for sensors to warm up before entering the loop
@@ -88,55 +83,59 @@ void loop() {
     return;
   }
 
-  
   File dataFile = SD.open("log.txt", FILE_WRITE); //opens or creates file
 
-  tempsensor = String(bme.temperature);
-  Serial.print("Temperature = ");
-  Serial.print(bme.temperature);
-  Serial.println(" *C");
+  sensors.requestTemperatures(); 
   
-  humsensor = String(bme.humidity);
-  Serial.print("Humidity = ");
-  Serial.print(bme.humidity);
-  Serial.println(" %");
+
+  //Print Values to Serial Monitor
+  Serial.println(bme.temperature);
+  Celcius=sensors.getTempCByIndex(0);
+  Serial.println(Celcius);
+  Serial.println(bme.humidity);
+  Serial.println(bme.pressure / 100.0);
+  
 
   sendRequest(readCO2);   //Locate the problem of program reset whduring this function call
- 
   unsigned long valCO2 = getValue(response);// Request from sensor 5 bytes of data
- 
-  co2sensor = String(valCO2);
-  Serial.print("Co2 ppm = ");
   Serial.println(valCO2);
   Serial.println();
   
   DateTime now = rtc.now();
 
 if (dataFile)
-   
-  dataFile.print(now.year(), DEC);
-  dataFile.print("/");
-  dataFile.print(now.month(), DEC);
-  dataFile.print("/");
-  dataFile.print(now.day(), DEC);
-  dataFile.print(",");
-  dataFile.print(now.hour(), DEC);
-  dataFile.print(":");
-  dataFile.print(now.minute(), DEC);
-  dataFile.print(":");
-  dataFile.print(now.second(), DEC);
-  dataFile.print(",");
-  dataFile.print(bme.temperature);
-  dataFile.print(",");
-  dataFile.print(bme.humidity);
-  dataFile.print(",");
-  dataFile.print(valCO2); 
-  dataFile.println();
-  dataFile.close();
+  {
+    dataFile.print(now.year(), DEC);
+    dataFile.print("/");
+    dataFile.print(now.month(), DEC);
+    dataFile.print("/");
+    dataFile.print(now.day(), DEC);
+    dataFile.print(",");
+    dataFile.print(now.hour(), DEC);
+    dataFile.print(":");
+    dataFile.print(now.minute(), DEC);
+    dataFile.print(":");
+    dataFile.print(now.second(), DEC);
+    dataFile.print(",");
+    dataFile.print(bme.temperature);
+    dataFile.print(",");
+    dataFile.print(Celcius);
+    dataFile.print(",");
+    dataFile.print(bme.humidity);
+    dataFile.print(",");
+    dataFile.print(bme.pressure / 100.0);
+    dataFile.print(",");
+    dataFile.print(valCO2);
+    dataFile.println();
+    dataFile.close();
 
-delay(1000);  //T6613 spec indicates signal update every 4 seconds
+    delay(1000); //T6613 spec indicates signal update every 4 seconds
+  }
+  else
+  {
+    Serial.print(dataFile);
+  }
 }
-
 
 void sendRequest(byte packet[])
 {
@@ -171,6 +170,3 @@ unsigned long getValue(byte packet[])
  return val;
  
 }
-
-
-  
