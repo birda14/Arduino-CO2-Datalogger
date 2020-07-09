@@ -1,5 +1,5 @@
 # Arduino-CO<sub>2</sub> eflux Datalogger
-An arduino sketch to log measuremnts multiple environmental sensors to an SD card in a soil CO<sub>2</sub> eflux chamber. 
+An arduino sketch to log measurements from multiple environmental sensors to an SD card. For use in a soil CO<sub>2</sub> eflux chamber. 
 
 Required Components:
 - Arduino UNO
