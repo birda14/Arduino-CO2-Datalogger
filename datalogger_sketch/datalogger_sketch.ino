@@ -95,13 +95,13 @@ if (dataFile)
     dataFile.print(":");
     dataFile.print(now.second(), DEC);
     dataFile.print(",");
-    dataFile.print(bme.temperature);
+    dataFile.print(bme.temperature + 273.15);
     dataFile.print(",");
-    dataFile.print(Celcius);
+    dataFile.print(Celcius + 273.15);
     dataFile.print(",");
     dataFile.print(bme.humidity);
     dataFile.print(",");
-    dataFile.print(bme.pressure / 100.0);
+    dataFile.print(bme.pressure / 1000);
     dataFile.print(",");
     dataFile.print(valCO2);
     dataFile.println();
