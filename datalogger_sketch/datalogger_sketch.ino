@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //Include required libraries
 #include <SD.h> //Library for SD card Logger
 #include <Wire.h> //Library for I2C Interface
@@ -313,4 +312,3 @@ unsigned long getValue(byte packet[])
  return val;
  
 }
->>>>>>> 10069ccd60033dd610f7c0d0dbc7c054d4a4c66d
