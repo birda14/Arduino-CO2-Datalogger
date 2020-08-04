@@ -33,6 +33,7 @@ const int pinCS = 10; // Set up logging sheild 10 for the SD cs line
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 float Celcius=0;
+DateTime sampleinit;
 //----------------------------------------------------------------------
 
 void setup()
@@ -59,15 +60,22 @@ void setup()
   Serial.println(" Datalogger Start");
   Serial.print("\n");
 
-  delay(300000); //wait 5 minutes for CO2 sensor to warm up before entering the loop
+  delay(1000); //wait 5 minutes for CO2 sensor to warm up before entering the loop
   tone(buzzer, 1000); // Send 1KHz sound signal...
-  delay(1000);        // ...for 1 sec
+  delay(3000);        // ...for 1 sec
   noTone(buzzer);     // Stop sound...
   delay(1000);        // ...for 1sec  
+  sampleinit = rtc.now(); 
 }
 
 void loop() {
-  
+  if(rtc.now() == (sampleinit+TimeSpan(0,0,3,0)))
+    { 
+      tone(buzzer, 2000); // Send 2KHz sound signal...
+      delay(5000);        // ...for 1 sec
+      noTone(buzzer);     // Stop sound...
+      while(1) { }
+      }
   DateTime now = rtc.now();
   if (! bme.performReading()) {
     Serial.println("Failed to perform reading :(");
@@ -108,6 +116,7 @@ if (dataFile)
     dataFile.close();
 
     while(rtc.now() != (now+TimeSpan(0,0,0,5))); 
+    
   }
   else
   {
