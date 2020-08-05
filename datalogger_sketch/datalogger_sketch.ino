@@ -39,12 +39,11 @@ DateTime sampleinit;
 void setup()
 {
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  SD.begin(pinCS);
-  bme.begin();
-  rtc.begin();
+  Serial.begin(9600); //Start serial console for debugging
+  SD.begin(pinCS); //Start SD card
+  bme.begin(); //Start bme sensor
+  rtc.begin(); //Start real time clock
  
-
   // Set up oversampling and filter initialization
   bme.setTemperatureOversampling(BME680_OS_8X);
   bme.setHumidityOversampling(BME680_OS_2X);
@@ -60,37 +59,35 @@ void setup()
   Serial.println(" Datalogger Start");
   Serial.print("\n");
 
-  delay(1000); //wait 5 minutes for CO2 sensor to warm up before entering the loop
+  delay(300000); //wait 5 minutes for CO2 sensor to warm up before entering the loop
   tone(buzzer, 1000); // Send 1KHz sound signal...
   delay(3000);        // ...for 1 sec
   noTone(buzzer);     // Stop sound...
   delay(1000);        // ...for 1sec  
-  sampleinit = rtc.now(); 
+  sampleinit = rtc.now(); //Store sampling initiated time
 }
 
 void loop() {
-  if(rtc.now() == (sampleinit+TimeSpan(0,0,3,0)))
+  if(rtc.now() == (sampleinit+TimeSpan(0,0,3,0))) //Edit to change total sampling duration (day, hour, minute, second)
     { 
-      tone(buzzer, 2000); // Send 2KHz sound signal...
+      tone(buzzer, 5000); // Send 2KHz sound signal...
       delay(5000);        // ...for 1 sec
       noTone(buzzer);     // Stop sound...
-      while(1) { }
+      while(1) { }        //Endless loop, program ends. 
       }
-  DateTime now = rtc.now();
-  if (! bme.performReading()) {
-    Serial.println("Failed to perform reading :(");
-    return;
-  }
+  DateTime now = rtc.now(); // Check time at begining of loop
 
-  File dataFile = SD.open("log.txt", FILE_WRITE); //opens or creates file
+  File dataFile = SD.open("log.csv", FILE_WRITE); //opens or creates file
 
   sensors.requestTemperatures(); 
   Celcius=sensors.getTempCByIndex(0);
-  sendRequest(readCO2);   //Locate the problem of program reset whduring this function call
+  sendRequest(readCO2);   //Sends request to CO2 meter
   unsigned long valCO2 = getValue(response);// Request from sensor 5 bytes of data
 
 if (dataFile)
   {
+    dataFile.print("Site 1"); //Edit to change site information 
+    dataFile.print(",");
     dataFile.print(now.year(), DEC);
     dataFile.print("/");
     dataFile.print(now.month(), DEC);
@@ -115,7 +112,7 @@ if (dataFile)
     dataFile.println();
     dataFile.close();
 
-    while(rtc.now() != (now+TimeSpan(0,0,0,5))); 
+    while(rtc.now() != (now+TimeSpan(0,0,0,5))); //Edit to change total sampling interval (day, hour, minute, second)
     
   }
   else
