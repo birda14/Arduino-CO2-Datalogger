@@ -19,14 +19,14 @@ Required Components:
 
 ## Data 
 The device logs the following 8 variables to an SD card in .csv format: 
--Site/Location/Station
--Date
--Time
--Atmospheric temperature (in Kelvin)
--Soil temperature (in Kelvin)
--Atmospheric humididy (in Percent)
--Atmospheric pressure (in kPa)
--Atmospheric CO<sub>2,</sub> concentration
+- Site/Location/Station
+- Date
+- Time
+- Atmospheric temperature (in Kelvin)
+- Soil temperature (in Kelvin)
+- Atmospheric humididy (in Percent)
+- Atmospheric pressure (in kPa)
+- Atmospheric CO<sub>2,</sub> concentration
 
 Station | Date | Time | Air Temp (K) | Soil temp (K) | Humidity (%) | Air press (kPa) | CO2 (ppm) |
 ---|---|---|---|---|---|---|---|
