@@ -77,6 +77,11 @@ void loop() {
       }
   DateTime now = rtc.now(); // Check time at begining of loop
 
+  if (! bme.performReading()) {
+    Serial.println("Failed to perform reading :(");
+    return;
+  }
+  
   File dataFile = SD.open("log.csv", FILE_WRITE); //opens or creates file
 
   sensors.requestTemperatures(); 
@@ -100,15 +105,15 @@ if (dataFile)
     dataFile.print(":");
     dataFile.print(now.second(), DEC);
     dataFile.print(",");
-    dataFile.print(bme.temperature + 273.15);
+    dataFile.print(bme.temperature + 273.15);     //Temperature in Kelvin
     dataFile.print(",");
-    dataFile.print(Celcius + 273.15);
+    dataFile.print(Celcius + 273.15);       //Temperature in Kelvin
     dataFile.print(",");
-    dataFile.print(bme.humidity);
+    dataFile.print(bme.humidity);           //Humidity in %
     dataFile.print(",");
-    dataFile.print(bme.pressure / 1000);
+    dataFile.print(bme.pressure / 1000);    //Pressure in kPa
     dataFile.print(",");
-    dataFile.print(valCO2);
+    dataFile.print(valCO2);                 //Concentration in ppm
     dataFile.println();
     dataFile.close();
 
