@@ -34,7 +34,18 @@ Component | Quantity | Store Link
  ### Assemble Chamber
 
  ### Wiring 
-     
+## Programming The Arduino 
+
+### Required Libraries  
+
+### Preparing the Real-Time-Clock (RTC)
+
+### Preparing the SD Card 
+
+### Customizing and Uploading the Program
+
+
+
 ## Field Operation
 1. Set the chamber down on its side near the preinstalled soil collar you wish to measure from. Turn on the device with the power toggle switch on the battery box.  
 2. The device will enter a warmup period for 5 minutes.
