@@ -29,6 +29,11 @@ Component | Quantity | Store Link
  
  ### Assemble Arduino
 
+ 1. Solder header pins onto the datalogger shield.
+ 2. Connect the datalogger shield to the Arduino Uno. 
+ 3. Install the real time clock CR1220 coin cell battery into the datalogger shield.
+ ![image info](./Images/Logger and Shield.png) 
+
  ### Assemble Sensor Board
 
  ### Assemble Chamber
