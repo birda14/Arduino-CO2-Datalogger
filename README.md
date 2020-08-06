@@ -1,4 +1,4 @@
-# Arduino-CO<sub>2</sub> eflux Datalogger
+# Arduino-CO<sub>2</sub> efflux Datalogger
 An arduino sketch to log measurements from multiple environmental sensors to an SD card. For use in a soil CO<sub>2</sub> efflux chamber. 
 
 ## Construction 
@@ -35,7 +35,42 @@ Component | Quantity | Store Link
  ![Shield and Uno](https://raw.githubusercontent.com/birda14/Arduino-CO2-Datalogger/master/Images/Logger%20and%20Shield%20.png) 
 
  ### Assemble Sensor Board
+ 
+ 1. Solder header pins to all connections on the BME680
+ 2. Solder individual header pins to only pins 1, 3, 10, and 11 of the T6613 CO<sub>2</sub> sensor (see pinout below).
+ ![T6113 pinout](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/T6613%20pinout.png)
+ 3. Connect all componets to the board as per the diagram and tabel below. 
+
  ![Sensor board](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/breadboard.png) 
+ 
+
+ Component | Pin | Board Position
+ ---|---|---
+ BME680 | VIN | E1
+ BME680 | 3Vo | E2
+ BME680 | GND | E3
+ BME680 | SCK | E4
+ BME680 | SDO | E5
+ BME680 | SDI | E6
+ BME680 | CS | E7
+ Buzzer | - | I9
+ Buzzer | + | I12
+ T6613 | 1 | D25
+ T6613 | 3 | D26
+ T6613 | 10 | E29
+ T6613 | 11|  D30
+ 4.7K Resistor | | C10-C13
+ 
+ Wire | Colour | Board Position 1 | Board Position 2
+ ---|---|---|---
+ 1 | Black | Ground 3 | B3 
+ 2 | Black | Ground 9 | C9
+ 3 | Black | E9 | F9
+ 4 | Black | Ground 26 | B26
+ 5 | Red | Positive 1 | A1
+ 6 | Red | Positive 10 | A10
+ 7 | Red | Positive 25 | A25
+
  ### Assemble Chamber
 
  ### Wiring 
