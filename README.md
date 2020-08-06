@@ -59,17 +59,18 @@ Component | Quantity | Store Link
  T6613 | 3 | D26
  T6613 | 10 | E29
  T6613 | 11|  D30
- 4.7K Resistor | | C10-C13
+
  
- Wire | Colour | Board Position 1 | Board Position 2
- ---|---|---|---
- 1 | Black | Ground 3 | B3 
- 2 | Black | Ground 9 | C9
- 3 | Black | E9 | F9
- 4 | Black | Ground 26 | B26
- 5 | Red | Positive 1 | A1
- 6 | Red | Positive 10 | A10
- 7 | Red | Positive 25 | A25
+ Component | Board Position 1 | Board Position 2
+ ---|---|---
+ Black Wire 1 | Ground 3 | B3 
+ Black Wire 2 | Ground 9 | C9
+ Black Wire 3 | E9 | F9
+ Black Wire 4 | Ground 26 | B26
+ Red Wire 1 | Positive 1 | A1
+ Red Wire 2 | Positive 10 | A10
+ Red Wire 3 | Positive 25 | A25
+ 4.7K Resistor | C10 | C13
 
  ### Assemble Chamber
 
