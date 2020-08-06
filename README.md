@@ -1,5 +1,5 @@
 # Arduino-CO<sub>2</sub> eflux Datalogger
-An arduino sketch to log measurements from multiple environmental sensors to an SD card. For use in a soil CO<sub>2</sub> eflux chamber. 
+An arduino sketch to log measurements from multiple environmental sensors to an SD card. For use in a soil CO<sub>2</sub> efflux chamber. 
 
 ## Construction 
 Required Components:
@@ -35,10 +35,11 @@ Component | Quantity | Store Link
  ![Shield and Uno](https://raw.githubusercontent.com/birda14/Arduino-CO2-Datalogger/master/Images/Logger%20and%20Shield%20.png) 
 
  ### Assemble Sensor Board
-
+ ![Sensor board](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/breadboard.png) 
  ### Assemble Chamber
 
  ### Wiring 
+ ![Connected](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/connected.png)
 ## Programming The Arduino 
 
 ### Required Libraries  
