@@ -2,7 +2,7 @@
 #include <SD.h> //Library for SD card Logger
 #include <Wire.h> //Library for I2C Interface
 #include <SPI.h> //Library for SPI interface
-#include <Adafruit_Sensor.h> //Common Library for Adafruit Sensors 
+#include <Adafruit_Sensor.h> //Common Library for Adafruit Unified Sensors 
 #include "Adafruit_BME680.h" // Library for Combined Environmental Sensor BME680
 #include "SoftwareSerial.h" //Library for Configuring Serial Interface for T66 CO2 Sensor
 #include "RTClib.h" //Library for Real Time Clock RTC_PCF8523

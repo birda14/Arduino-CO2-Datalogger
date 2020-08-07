@@ -28,18 +28,19 @@ Component | Quantity | Store Link
  AA Batteries 8 pack | 1 | https://amzn.to/2PoqyLD
  
  ### Assemble Arduino
-
  1. Solder header pins onto the datalogger shield.
  2. Connect the datalogger shield to the Arduino Uno. 
  3. Install the real time clock CR1220 coin cell battery into the datalogger shield.
+
  ![Shield and Uno](https://raw.githubusercontent.com/birda14/Arduino-CO2-Datalogger/master/Images/Logger%20and%20Shield%20.png) 
 
  ### Assemble Sensor Board
- 
  1. Solder header pins to all connections on the BME680
  2. Solder individual header pins to only pins 1, 3, 10, and 11 of the T6613 CO<sub>2</sub> sensor (see pinout below).
+
  ![T6113 pinout](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/T6613%20pinout.png)
- 3. Connect all componets to the board as per the diagram and tabel below. 
+
+ 3. Connect all componets to the board as per the diagram and table below. 
 
  ![Sensor board](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/breadboard.png) 
  
@@ -77,16 +78,40 @@ Component | Quantity | Store Link
  ### Wiring 
  ![Connected](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/connected.png)
 ## Programming The Arduino 
+ Download and install Arduino IDE for your platform:
+
+https://www.arduino.cc/en/Main/Software
 
 ### Required Libraries  
+1. In the Arduino IDE click Tools -> Manage Libraries.
+2. Search for and install the following libraries:
+
+```C++
+#include <SD.h> //Library for SD card Logger
+#include <Wire.h> //Library for I2C Interface
+#include <SPI.h> //Library for SPI interface
+#include <Adafruit_Sensor.h> //Common Library for Adafruit Unified Sensors 
+#include "Adafruit_BME680.h" // Library for Combined Environmental Sensor BME680
+#include "SoftwareSerial.h" //Library for Configuring Serial Interface for T66 CO2 Sensor
+#include "RTClib.h" //Library for Real Time Clock RTC_PCF8523
+#include <OneWire.h> //Interface for DS18B20 Temperature Sensor
+#include <DallasTemperature.h> //Library for DS18B20 Temperature Sensor
+```
 
 ### Preparing the Real-Time-Clock (RTC)
+1. In the Arduino IDE click Files -> Examples -> RTClib -> PCF8523
+2. Uncomment line 38 and upload to the Arduino to set the clock based on the PC system time. 
 
 ### Preparing the SD Card 
+1. Format an SD card in FAT32 using your operating system utility.
+2. Insert it into the datalogging shield. 
 
 ### Customizing and Uploading the Program
-
-
+ 1. Download datalogger_sketch.ino 
+ 2. Open sketch in Arduino IDE or the editor of your choice.
+ 3. Edit line 71 to change the total sampling duration (default is 3 minutes).
+ 4. Edit line 120 to change the sampling interval (default is 5 seconds). 
+ 5. Upload datalogger.sketch to your arduino board. 
 
 ## Field Operation
 1. Set the chamber down on its side near the preinstalled soil collar you wish to measure from. Turn on the device with the power toggle switch on the battery box.  
