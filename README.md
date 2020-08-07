@@ -74,8 +74,25 @@ Component | Quantity | Store Link
  4.7K Resistor | C10 | C13
 
  ### Assemble Chamber
+ 1. Cut a 50cm length of 3 inch diameter PVC pipe.
+ 2. Place a PVC cap on one end of the tube.
+ 3. Measure one inch from the bottom of the cap and mark it. Drill a hole with a 1/2" drill bit. 
+ 4. Measure the center of the waterproof case and mark it. Drill a hole with a 1/2" drill bit.
+ 5. Install 2 cable glands into the newly-drilled holes. 
+ 6. Cut the barrel connector of of the battery box and strip both wires.
+ 7. Run the battery cable through the cable gland into the waterproof case and connect it to the power connector with a screwdriver
+ 8. Attach the waterproof case and the battery box to the top of the PVC piping using velcro tape.  
 
  ### Wiring 
+ 1. Cut 8 coloured wires 40cm in length. 
+ 2. Run the wires through both cable glands, from the inside of the chamber to the inside of the waterproof case. 
+ 3. Run the waterproof temperature sensor wires through the chamber cable gland.
+ 4. Solder the connections between the Arduino and sensor board according to the following tabel and diagram:
+
+ Component | Arduino Position | Board Position 
+ ---|---|---
+ 
+  4.7K Resistor | C10 | C13
  ![Connected](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/connected.png)
 ## Programming The Arduino 
  Download and install Arduino IDE for your platform:
@@ -92,7 +109,7 @@ https://www.arduino.cc/en/Main/Software
 #include <SPI.h> //Library for SPI interface
 #include <Adafruit_Sensor.h> //Common Library for Adafruit Unified Sensors 
 #include "Adafruit_BME680.h" // Library for Combined Environmental Sensor BME680
-#include "SoftwareSerial.h" //Library for Configuring Serial Interface for T66 CO2 Sensor
+#include "SoftwareSerial.h" //Library for Configuring Serial Interface for T6613 CO2 Sensor
 #include "RTClib.h" //Library for Real Time Clock RTC_PCF8523
 #include <OneWire.h> //Interface for DS18B20 Temperature Sensor
 #include <DallasTemperature.h> //Library for DS18B20 Temperature Sensor
