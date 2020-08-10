@@ -160,7 +160,7 @@ The device logs the following 8 variables to an SD card in .csv format:
 - Atmospheric pressure (in kPa)
 - Atmospheric CO<sub>2,</sub> concentration
 
-Station | Date | Time | Air Temp (K) | Soil temp (K) | Humidity (%) | Air press (kPa) | CO2 (ppm) |
+Station | Date | Time | Air Temp (K) | Soil temp (K) | Humidity (%) | Air press (kPa) | CO<sub>2</sub> (ppm) |
 ---|---|---|---|---|---|---|---|
 Site 1 | 08/05/2020 | 8:51:07 | 298.54 | 298.15 | 67.81 | 100.3 | 380
 Site 1 | 08/05/2020	| 8:51:12 |	298.55 | 297.96 | 67.69 | 100.3 | 380
