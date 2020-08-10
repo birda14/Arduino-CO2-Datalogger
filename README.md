@@ -87,12 +87,22 @@ Component | Quantity | Store Link
  1. Cut 8 coloured wires 40cm in length. 
  2. Run the wires through both cable glands, from the inside of the chamber to the inside of the waterproof case. 
  3. Run the waterproof temperature sensor wires through the chamber cable gland.
- 4. Solder the connections between the Arduino and sensor board according to the following tabel and diagram:
+ 4. Solder the connections between the Arduino and sensor board according to the following table and diagram:
 
  Component | Arduino Position | Board Position 
  ---|---|---
- 
-  4.7K Resistor | C10 | C13
+ Orange Wire | Snslog In 4 | A6
+ Purple Wire | Analog In 5 | A4
+ Red Wire | 5.0V | Positive 30
+ Black Wire | GND | Negative 30
+ Grey Wire | Digital I/O 6 | A29
+ White Wire 1 | Digital I/O 7 | A30 
+ White wire 2 | Digital I/O 8 | A14
+ Brown Wire 9 | Digitcal I/O 9 | F12
+ DS18B20 Red Wire |  | B10
+ DS18B20 Black Wire | | D9
+ DS18B20 Yellow Wire | | D14
+
  ![Connected](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/connected.png)
 ## Programming The Arduino 
  Download and install Arduino IDE for your platform:
