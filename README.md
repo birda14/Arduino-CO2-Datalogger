@@ -168,6 +168,13 @@ Site 1 | 08/05/2020	| 8:51:17 |	298.56 | 297.9 | 67.51 | 100.3 | 381
 Site 1 | 08/05/2020	| 8:51:22 |	298.58 | 297.9 | 67.38 | 100.3 | 381
 Site 1 | 08/05/2020	| 8:51:27 |	298.6  | 297.9 | 67.28 | 100.3 | 380
 
+## Reference Photos
+
+![Breadboard](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/board%20photo.jpg)
+![Column](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/column.jpg)
+![Inside](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/inside.jpg)
+![Top](https://github.com/birda14/Arduino-CO2-Datalogger/blob/master/Images/top.jpg)
+
 
 
 
