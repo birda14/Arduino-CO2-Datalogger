@@ -64,6 +64,7 @@ void setup()
   delay(3000);        // ...for 1 sec
   noTone(buzzer);     // Stop sound...
   delay(1000);        // ...for 1sec  
+  delay(30000);       //Delay for 30 seconds
   sampleinit = rtc.now(); //Store sampling initiated time
 }
 
@@ -91,7 +92,7 @@ void loop() {
 
 if (dataFile)
   {
-    dataFile.print("Site 1"); //Edit to change site information 
+    dataFile.print("Coboconk"); //Edit to change site information 
     dataFile.print(",");
     dataFile.print(now.year(), DEC);
     dataFile.print("/");
